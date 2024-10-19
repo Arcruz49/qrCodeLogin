@@ -1,0 +1,23 @@
+CREATE TABLE cadUsuario(
+    cdUsuario int IDENTITY(1,1) Primary Key,
+    nmUsuario varchar(256),
+    email varchar(500),
+    cdPerfilUsuario int, -- Esta será a chave estrangeira
+    senha varchar(max),
+    usuarioC int,
+    dtCriacao DATETIME,
+    usuarioA int,
+    dtAlteracao DATETIME,
+    CONSTRAINT FK_cadUsuario_cadPerfil FOREIGN KEY (cdPerfilUsuario)
+        REFERENCES cadPerfil(cdPerfil)
+);
+
+
+CREATE TABLE cadPerfil(
+    cdPerfil int IDENTITY(1,1) Primary Key, -- Inicia em 1 e incrementa de 1 em 1
+    nmPerfil varchar(256),
+    usuarioC int,
+    dtCriacao DATETIME,
+    usuarioA int,
+    dtAlteracao DATETIME
+);

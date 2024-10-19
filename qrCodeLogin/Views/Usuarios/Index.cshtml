@@ -1,0 +1,38 @@
+﻿@model IEnumerable<qrCodeLogin.Models.Resources.ResourceUsuarios>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Data Criação</th>
+            <th>Botões</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.cdUsuario</td>
+                <td>@usuario.nmUsuario</td> 
+                <td>@(usuario.email ?? "")</td> 
+                <td>@(usuario.dtCriacao ?? "")</td> 
+                <td>
+                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-danger">Excluir</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    td{
+        text-align:center;
+    }
+
+    th{
+        text-align: center;
+    }
+</style>
