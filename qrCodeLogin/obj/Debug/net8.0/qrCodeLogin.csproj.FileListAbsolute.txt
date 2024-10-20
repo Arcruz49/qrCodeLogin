@@ -171,3 +171,5 @@ C:\Users\Arthur Cruz\Documents\projetos pessoais\qrCodeLogin\qrCodeLogin\bin\Deb
 C:\Users\Arthur Cruz\Documents\projetos pessoais\qrCodeLogin\qrCodeLogin\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Arthur Cruz\Documents\projetos pessoais\qrCodeLogin\qrCodeLogin\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Arthur Cruz\Documents\projetos pessoais\qrCodeLogin\qrCodeLogin\bin\Debug\net8.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Arthur Cruz\Documents\projetos pessoais\qrCodeLogin\qrCodeLogin\obj\Debug\net8.0\qrCodeLogin.sourcelink.json
+C:\Users\Arthur Cruz\Documents\projetos pessoais\qrCodeLogin\qrCodeLogin\bin\Debug\net8.0\zxing.dll

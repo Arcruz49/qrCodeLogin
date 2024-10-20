@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using qrCodeLogin.Models;
+using System.Drawing;
+using System.Net.Mail;
+using System.Net;
+
 
 namespace qrCodeLogin.Controllers
 {
@@ -37,15 +41,12 @@ namespace qrCodeLogin.Controllers
 
 
                 PasswordHasher<CadUsuario> hasher = new PasswordHasher<CadUsuario>();
-                var verificationResult = hasher.VerifyHashedPassword(user, user.Senha, password);
+                var verificationResult = hasher.VerifyHashedPassword(user, user.Senha ?? "", password);
 
                 if (verificationResult != PasswordVerificationResult.Success)
                     return Json(new Retorno<string> { Success = false, Message = "Login Failed" });
 
                 return Json(new Retorno<string> { Success = true, Message = "" });
-
-
-
 
             }
             catch (Exception ex)
@@ -93,6 +94,11 @@ namespace qrCodeLogin.Controllers
                 db.Add(usuario);
                 db.SaveChanges();
 
+
+                var qrCode = GerarQRCode(usuario.NmUsuario);
+                EnviarEmailComQRCode("arthurcruzdbp@gmail.com", Convert.ToBase64String(qrCode));
+
+
                 return Json(new Retorno<string> { Success = true, Message = ""});
 
 
@@ -102,5 +108,57 @@ namespace qrCodeLogin.Controllers
                 return Json(new Retorno<string> { Success = false, Message = "Error Trying To Create Account "+ ex.Message });
             }
         }
+
+
+        public byte[] GerarQRCode(string texto)
+        {
+            // Crie uma instância do BarcodeWriter sem tipo genérico
+            var writer = new ZXing.BarcodeWriter
+            {
+                Format = ZXing.BarcodeFormat.QR_CODE,
+                Options = new ZXing.Common.EncodingOptions
+                {
+                    Width = 250,
+                    Height = 250,
+                    Margin = 1
+                }
+            };
+
+            // Gere a imagem do QR Code como um Bitmap
+            using (var bitmap = writer.Write(texto))
+            using (var memoryStream = new MemoryStream())
+            {
+                // Salve a imagem no MemoryStream
+                bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                return memoryStream.ToArray();
+            }
+        }
+
+
+
+        public void EnviarEmailComQRCode(string email, string qrCodeBase64)
+        {
+            var subject = "Seu QR Code";
+            var body = $"<h1>Seu QR Code</h1><p>Use o QR Code abaixo:</p><img src='data:image/png;base64,{qrCodeBase64}' />";
+
+            using (var smtpClient = new SmtpClient("arthurcruzdbp@gmail.com", 587))
+            {
+                smtpClient.Credentials = new NetworkCredential("arthurcruzdbp@gmail.com", "Myidealsmementos420");
+                smtpClient.EnableSsl = true;
+
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress("arthurcruzdbp@gmail.com"),
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true
+                };
+
+                mailMessage.To.Add(email);
+
+                smtpClient.Send(mailMessage);
+            }
+        }
+
     }
 }
