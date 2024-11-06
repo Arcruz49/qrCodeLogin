@@ -7,8 +7,20 @@
       "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\util\\qrcodeutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\util\\qrcodeutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\models\\cadusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,16 +31,8 @@
       "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\models\\resources\\resourceusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|solutionrelative:qrcodelogin\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D38A5440-DDFF-4F10-A24B-CBF2DFD7DA43}|qrCodeLogin\\qrCodeLogin.csproj|c:\\users\\arthur cruz\\documents\\projetos pessoais\\qrcodelogin\\qrcodelogin\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -42,49 +46,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "qrCodeLogin\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "qrCodeLogin\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAAwEEAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T02:08:38.931Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Usuarios\\Index.cshtml",
-              "RelativeDocumentMoniker": "qrCodeLogin\\Views\\Usuarios\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Usuarios\\Index.cshtml",
-              "RelativeToolTip": "qrCodeLogin\\Views\\Usuarios\\Index.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADIAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-20T01:55:42.538Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CadUsuario.cs",
-              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Models\\CadUsuario.cs",
-              "RelativeDocumentMoniker": "qrCodeLogin\\Models\\CadUsuario.cs",
-              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Models\\CadUsuario.cs",
-              "RelativeToolTip": "qrCodeLogin\\Models\\CadUsuario.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAA1wBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T05:33:13.914Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -93,27 +56,79 @@
               "RelativeDocumentMoniker": "qrCodeLogin\\Controllers\\LoginController.cs",
               "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Controllers\\LoginController.cs",
               "RelativeToolTip": "qrCodeLogin\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAHAAAAAAAAAAAAA3wHkAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAHgAAAAAAAAAAAD4v6gAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-15T23:38:41.628Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Login\\Index.cshtml",
-              "RelativeDocumentMoniker": "qrCodeLogin\\Views\\Login\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Login\\Index.cshtml",
-              "RelativeToolTip": "qrCodeLogin\\Views\\Login\\Index.cshtml",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAIAAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-15T23:39:51.831Z",
+              "DocumentIndex": 1,
+              "Title": "QrCodeUtil.cs",
+              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Util\\QrCodeUtil.cs",
+              "RelativeDocumentMoniker": "qrCodeLogin\\Util\\QrCodeUtil.cs",
+              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Util\\QrCodeUtil.cs",
+              "RelativeToolTip": "qrCodeLogin\\Util\\QrCodeUtil.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAmwD8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T17:08:36.106Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Usuarios\\Index.cshtml",
+              "RelativeDocumentMoniker": "qrCodeLogin\\Views\\Usuarios\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Usuarios\\Index.cshtml",
+              "RelativeToolTip": "qrCodeLogin\\Views\\Usuarios\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-20T20:59:28.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "qrCodeLogin\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "qrCodeLogin\\Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBYAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T20:54:49.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CadUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Models\\CadUsuario.cs",
+              "RelativeDocumentMoniker": "qrCodeLogin\\Models\\CadUsuario.cs",
+              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Models\\CadUsuario.cs",
+              "RelativeToolTip": "qrCodeLogin\\Models\\CadUsuario.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAYwA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T05:33:13.914Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "qrCodeLogin\\Views\\Login\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "qrCodeLogin\\Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-15T23:39:51.831Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "ResourceUsuarios.cs",
               "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Models\\Resources\\ResourceUsuarios.cs",
               "RelativeDocumentMoniker": "qrCodeLogin\\Models\\Resources\\ResourceUsuarios.cs",
@@ -121,12 +136,11 @@
               "RelativeToolTip": "qrCodeLogin\\Models\\Resources\\ResourceUsuarios.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T05:05:53.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T05:05:53.56Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "qrCodeLogin\\wwwroot\\js\\site.js",
@@ -134,12 +148,11 @@
               "RelativeToolTip": "qrCodeLogin\\wwwroot\\js\\site.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-10-20T03:17:48.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T03:17:48.341Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "qrCodeLogin\\Views\\Shared\\_Layout.cshtml",
@@ -147,8 +160,7 @@
               "RelativeToolTip": "qrCodeLogin\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-20T01:53:05.937Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T01:53:05.937Z"
             }
           ]
         }

@@ -4,7 +4,8 @@ using qrCodeLogin.Models;
 using System.Drawing;
 using System.Net.Mail;
 using System.Net;
-
+using qrCodeLogin.Util;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace qrCodeLogin.Controllers
 {
@@ -23,7 +24,7 @@ namespace qrCodeLogin.Controllers
 
             try
             {
-
+                LogOnCode();
                 #region validações do form
 
 
@@ -60,7 +61,6 @@ namespace qrCodeLogin.Controllers
         [HttpPost]
         public JsonResult Register(string username = "", string email = "", string password1 = "", string password2 = "")
         {
-
             try
             {
                 #region validações do form
@@ -95,8 +95,21 @@ namespace qrCodeLogin.Controllers
                 db.SaveChanges();
 
 
-                var qrCode = GerarQRCode(usuario.NmUsuario);
-                EnviarEmailComQRCode("arthurcruzdbp@gmail.com", Convert.ToBase64String(qrCode));
+                var qrCodeImage = QrCodeUtil.GenerateImage(QrCodeUtil.GenerateEncryptedToken(usuario.CdUsuario, usuario.NmUsuario));
+
+                string qrCodeBase64;
+                using (var ms = new System.IO.MemoryStream())
+                {
+                    qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    qrCodeBase64 = Convert.ToBase64String(ms.ToArray());
+                }
+
+                var emailResult = QrCodeUtil.EnviaEmail("Bem-vindo ao sistema", "Seu código QR", qrCodeBase64, email);
+
+                if (!emailResult.Success)
+                {
+                    return Json(new Retorno<string> { Success = false, Message = "Error sending email: " + emailResult.Message });
+                }
 
 
                 return Json(new Retorno<string> { Success = true, Message = ""});
@@ -108,32 +121,6 @@ namespace qrCodeLogin.Controllers
                 return Json(new Retorno<string> { Success = false, Message = "Error Trying To Create Account "+ ex.Message });
             }
         }
-
-
-        public byte[] GerarQRCode(string texto)
-        {
-            // Crie uma instância do BarcodeWriter sem tipo genérico
-            var writer = new ZXing.BarcodeWriter
-            {
-                Format = ZXing.BarcodeFormat.QR_CODE,
-                Options = new ZXing.Common.EncodingOptions
-                {
-                    Width = 250,
-                    Height = 250,
-                    Margin = 1
-                }
-            };
-
-            // Gere a imagem do QR Code como um Bitmap
-            using (var bitmap = writer.Write(texto))
-            using (var memoryStream = new MemoryStream())
-            {
-                // Salve a imagem no MemoryStream
-                bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
-                return memoryStream.ToArray();
-            }
-        }
-
 
 
         public void EnviarEmailComQRCode(string email, string qrCodeBase64)
@@ -160,5 +147,22 @@ namespace qrCodeLogin.Controllers
             }
         }
 
+
+        public JsonResult LogOnCode(string token = "YmL5a9T44sEAKlL+1YE7Jw==:HFxTy/F/pIMZms5KAKuT9Q==")
+        {
+            try
+            {
+
+                if(string.IsNullOrEmpty(token)) return Json(new Retorno<string> { Success = false, Message = "Error " + "Token inválido." });
+
+                var tokenDescrip = QrCodeUtil.DecryptToken(token);
+
+                return Json(new Retorno<string> { Success = true, Message = "" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new Retorno<string> { Success = false, Message = "Error " + ex.Message });
+            }
+        }
     }
 }

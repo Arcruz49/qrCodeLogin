@@ -28,8 +28,9 @@
 </style>
 
 <script>
+    var dataTable;
     $(document).ready(function () {
-        var dataTable = $('#usuariosTable').DataTable({
+        dataTable = $('#usuariosTable').DataTable({
             "ajax": {
                 "url": "/Usuarios/getUsuarios",
                 "type": "GET",
@@ -91,7 +92,7 @@
                                 text: "Account deleted.",
                                 icon: "success"
                             });
-                            dataTable.ajax.reload(null, false);
+                            dataTable.ajax.reload(null, false); 
                         } else {
                             Swal.fire({
                                 title: "Error!",
