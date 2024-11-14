@@ -5,7 +5,7 @@ using qrCodeLogin.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<dbProjectContext>(options =>
+builder.Services.AddDbContext<DbProjectContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();

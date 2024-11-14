@@ -4,27 +4,42 @@ using Microsoft.EntityFrameworkCore;
 
 namespace qrCodeLogin.Models;
 
-public partial class dbProjectContext : DbContext
+public partial class DbProjectContext : DbContext
 {
-    public dbProjectContext()
+    public DbProjectContext()
     {
     }
 
-    public dbProjectContext(DbContextOptions<dbProjectContext> options)
+    public DbProjectContext(DbContextOptions<DbProjectContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<CadPerfil> CadPerfils { get; set; }
+    public virtual DbSet<CadConfiguracao> CadConfiguracao { get; set; }
+
+    public virtual DbSet<CadPerfil> CadPerfil { get; set; }
 
     public virtual DbSet<CadUsuario> CadUsuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-BNHCASD;Database=dbProject;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=localhost;Database=dbProject;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<CadConfiguracao>(entity =>
+        {
+            entity.HasKey(e => e.CdConfiguracao).HasName("PK__cadConfi__2235037DC59F4858");
+
+            entity.ToTable("cadConfiguracao");
+
+            entity.Property(e => e.CdConfiguracao).HasColumnName("cdConfiguracao");
+            entity.Property(e => e.ChaveCriptografia)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("chaveCriptografia");
+        });
+
         modelBuilder.Entity<CadPerfil>(entity =>
         {
             entity.HasKey(e => e.CdPerfil).HasName("PK__cadPerfi__08F8A08B41E2E715");

@@ -11,6 +11,8 @@ namespace qrCodeLogin.Util
 {
     public class QrCodeUtil
     {
+        private static DbProjectContext db = new DbProjectContext();
+
         public static Bitmap GenerateImage(string text)
         {
             var qrGenerator = new QRCodeGenerator();
@@ -67,7 +69,9 @@ namespace qrCodeLogin.Util
         public static string GenerateEncryptedToken(int cdUsuario, string NmUsuario = "")
         {
             string token = $"{cdUsuario}/{NmUsuario}";
-            var key = "FACHINELLI021022";
+
+            var key = (from a in db.CadConfiguracao
+                       select a.ChaveCriptografia).FirstOrDefault();
 
 
             using (var aes = Aes.Create())
@@ -90,7 +94,9 @@ namespace qrCodeLogin.Util
 
         public static string DecryptToken(string encryptedText)
         {
-            var key = "FACHINELLI021022";
+            var key = (from a in db.CadConfiguracao
+                       select a.ChaveCriptografia).FirstOrDefault();
+
             var parts = encryptedText.Split(':');
             var iv = Convert.FromBase64String(parts[0]);
             var encryptedBytes = Convert.FromBase64String(parts[1]);

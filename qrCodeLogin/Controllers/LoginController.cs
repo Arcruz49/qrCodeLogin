@@ -1,17 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using qrCodeLogin.Models;
-using System.Drawing;
 using System.Net.Mail;
 using System.Net;
 using qrCodeLogin.Util;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace qrCodeLogin.Controllers
 {
     public class LoginController : Controller
     {
-        private dbProjectContext db = new dbProjectContext();
+        private DbProjectContext db = new DbProjectContext();
 
         public IActionResult Index()
         {
@@ -37,6 +35,10 @@ namespace qrCodeLogin.Controllers
                 #endregion
 
                 var user = db.CadUsuarios.FirstOrDefault(a => a.NmUsuario == username);
+
+                CadUsuario cadUsuario = new CadUsuario();
+                
+
                 if (user == null)
                     return Json(new Retorno<string> { Success = false, Message = "User Not Found" });
 

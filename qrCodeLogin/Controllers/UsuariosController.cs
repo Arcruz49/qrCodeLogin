@@ -9,7 +9,7 @@ namespace qrCodeLogin.Controllers
 {
     public class UsuariosController : Controller
     {
-        private dbProjectContext db = new dbProjectContext();
+        private DbProjectContext db = new DbProjectContext();
 
         public IActionResult Index()
         {
