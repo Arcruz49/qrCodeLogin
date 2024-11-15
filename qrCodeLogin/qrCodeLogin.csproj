@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Login\QrCodeLogin.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Login\QrCodeLogin.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />

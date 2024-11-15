@@ -4,132 +4,96 @@
 
 <link rel="stylesheet" href="~/css/loginStyle.css">
 
-<div class="login-form" >
+<div class="login-form">
     <div class="container">
         <div class="main">
             <div class="content">
                 <h2 class="login">Login</h2>
                 <h2 class="register">Register</h2>
-                <form id="loginForm" class="login" action="" method="post" >
-
-                    <input type="text" id="username" name="" placeholder="User Name" required autofocus="" >
-                    <input type="password" id="password" name="" placeholder="User Password" required autofocus="">
-                    <button class="btn" type="submit">
-                        Login
-                    </button>
-
-
+                <form id="loginForm" class="login" action="" method="post">
+                    <input type="text" id="username" name="" placeholder="User Name" required autofocus="true">
+                    <input type="password" id="password" name="" placeholder="User Password" required autofocus="true">
+                    <button class="btn" type="submit">Login</button>
                 </form>
                 <form id="registerForm" class="register" action="" method="post">
-
-                    <input type="text" id="usernameRegister" name="" placeholder="User Name" required autofocus="">
-                    <input type="email" id="email" name="" placeholder="E-mail" required autofocus="">
-                    <input type="password" id="password1" name="" placeholder="Password" required autofocus="">
-                    <input type="password" id="password2" name="" placeholder="Confirm Your Password" required autofocus="">
-                    <button class="btn" type="submit">
-                        Register
-                    </button>
-
-
+                    <input type="text" id="usernameRegister" name="" placeholder="User Name" required autofocus="true">
+                    <input type="email" id="email" name="" placeholder="E-mail" required autofocus="true">
+                    <input type="password" id="password1" name="" placeholder="Password" required autofocus="true">
+                    <input type="password" id="password2" name="" placeholder="Confirm Your Password" required autofocus="true">
+                    <button class="btn" type="submit">Register</button>
                 </form>
                 <p class="account login">Don't Have An Account? <a href="#" id="registerLink">Register</a></p>
                 <p class="account register">Already Have An Account? <a href="#" id="loginLink">Login</a></p>
                 <p class="message"></p>
+            </div>
 
-            </div>
             <div class="form-img login">
-                <p class="account">Or Login Using Your QR Code</p>
+                <p class="account"><a style="cursor:pointer" id="qrCodeLogin">Or Login Using Your QR Code</a></p>
+                <div id="qrCodeScanner" style="display: none;">
+                    <div id="reader" style="width: 100%; max-width: 600px; height: auto; border: 2px solid #ccc; margin-bottom: 20px;"></div>
+                    <p id="message">Aguardando QR Code...</p>
+                </div>
             </div>
+
+            
+
             <div class="form-img register">
                 <p class="account">After Creating Your Account, You Will Receive Your QR Code</p>
             </div>
-
         </div>
     </div>
 </div>
 
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/html5-qrcode.min.js"></script>
 
 <script>
     $(document).ready(function () {
-        $('#loginForm').on('submit', function (e) {
+        // Trocar entre login e registro
+        $('#registerLink').on('click', function (e) {
             e.preventDefault();
+            $('.login').hide();
+            $('.register').show();
+            $('.content').css('height', 520);
+            $('.message').html('');
+        });
 
-            var username = $('#username').val();
-            var password = $('#password').val();
+        $('#loginLink').on('click', function (e) {
+            e.preventDefault();
+            $('.register').hide();
+            $('.login').show();
+            $('.content').css('height', 400);
+            $('.message').html('');
+        });
 
-            $.ajax({
-                url: '/Login/LogOn',
-                type: 'POST',
-                data: {
-                    username: username,
-                    password: password
+        // funcao do qrcode
+        $('#qrCodeLogin').on('click', function () {
+            $('#qrCodeScanner').show();
+
+            // inicia o scanner
+            const html5QrCode = new Html5Qrcode("reader");
+
+            function onScanSuccess(decodedText, decodedResult) {
+                document.getElementById('message').textContent = "QR Code Escaneado: " + decodedText;
+            }
+
+            function onScanError(errorMessage) {
+                console.error("Erro ao escanear: ", errorMessage);
+            }
+
+            html5QrCode.start(
+                { facingMode: "environment" }, // setar para usar a camera traseira
+                {
+                    fps: 10,
+                    qrbox: 250, // tamanho da caixa de detecção do qrcode
                 },
-                success: function (data) {
-                    if (data.success) {
-                        window.location.href = '/Home/Index';
-                    } else {
-                        $('.message').html('<span style="color:red;">' + data.message + '</span>');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.log('Erro no login:', error);
-                    alert('Ocorreu um erro ao tentar fazer o login.');
-                }
+                onScanSuccess,
+                onScanError
+            ).catch(err => {
+                console.error("Erro ao iniciar a câmera:", err);
+                document.getElementById('message').textContent = 'Erro ao acessar a câmera.';
             });
         });
     });
-
-    $(document).ready(function () {
-        $('#registerForm').on('submit', function (e) {
-            e.preventDefault();
-
-            var username = $('#usernameRegister').val();
-            var email = $('#email').val();
-            var password1 = $('#password1').val();
-            var password2 = $('#password2').val();
-
-            $.ajax({
-                url: '/Login/Register',
-                type: 'POST',
-                data: {
-                    username: username,
-                    email: email,
-                    password1: password1,
-                    password2: password2
-                },
-                success: function (data) {
-                    if (data.success) {
-                        window.location.href = '/Home/Index';
-                    } else {
-                        $('.message').html('<span style="color:red;">' + data.message + '</span>');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.log('Erro no Registro:', error);
-                    alert('Ocorreu um erro ao tentar Registrar.');
-                }
-            });
-        });
-    });
-
-    $('#registerLink').on('click', function (e) {
-        e.preventDefault();
-        $('.login').css('display', 'none');
-        $('.register').css('display', 'block');
-        $('.content').css('height', 520);
-        $('.message').html('');
-    });
-
-    $('#loginLink').on('click', function (e) {
-        e.preventDefault();
-        $('.register').css('display', 'none');
-        $('.login').css('display', 'block');
-        $('.content').css('height', 400);
-        $('.message').html('');
-
-    });
-
 </script>
+
