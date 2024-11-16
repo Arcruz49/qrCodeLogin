@@ -14,8 +14,11 @@
                         <p class="text-muted mb-1">@ViewBag.nmPerfil</p>
                         <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                         <div class="d-flex justify-content-center mb-2">
-                            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Edit</button>
+                            <button type="button" id="editBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Edit</button>
+                            <button type="button" id="saveBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-success d-none">Save</button>
+                            <button type="button" id="cancelBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger d-none">Cancel</button>
                         </div>
+
                     </div>
                 </div>
                 <div class="card mb-4 mb-lg-0">
@@ -23,23 +26,23 @@
                         <ul class="list-group list-group-flush rounded-3">
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fas fa-globe fa-lg text-warning"></i>
-                                <input type="text" class="links" value="@(Model.Site ?? "")" disabled>
+                                <input type="url" name="Site" class="links" value="@(Model.Site ?? "")" disabled>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fab fa-github fa-lg text-body"></i>
-                                <input type="text" class="links" value="@(Model.Github ?? "")" disabled>
+                                <input type="url" name="Github" class="links" value="@(Model.Github ?? "")" disabled>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                <input type="text" class="links" value="@(Model.Twitter ?? "")" disabled>
+                                <input type="url" name="Twitter" class="links" value="@(Model.Twitter ?? "")" disabled>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                <input type="text" class="links" value="@(Model.Instagram ?? "")" disabled>
+                                <input type="url" name="Instagram" class="links" value="@(Model.Instagram ?? "")" disabled>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                <input type="text" class="links" value="@(Model.Facebook ?? "")" disabled>
+                                <input type="url" name="Facebook" class="links" value="@(Model.Facebook ?? "")" disabled>
                             </li>
                         </ul>
                     </div>
@@ -50,10 +53,10 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Full Name</p>
+                                <p class="mb-0">Name</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">@Model.NmUsuario</p>
+                                <p name="NmUsuario" class="text-muted mb-0">@Model.NmUsuario</p>
                             </div>
                         </div>
                         <hr>
@@ -62,7 +65,7 @@
                                 <p class="mb-0">Email</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">@Model.Email</p>
+                                <p name="Email" class="text-muted mb-0">@Model.Email</p>
                             </div>
                         </div>
                         <hr>
@@ -71,7 +74,7 @@
                                 <p class="mb-0">Phone</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">(097) 234-5678</p>
+                                <input name="Telefone1" type="text" class="telefone" value="@(Model.Telefone1 ?? "")" disabled>
                             </div>
                         </div>
                         <hr>
@@ -80,7 +83,7 @@
                                 <p class="mb-0">Mobile</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">(098) 765-4321</p>
+                                <input name="Telefone2" type="text" class="telefone" value="@(Model.Telefone2 ?? "")" disabled>
                             </div>
                         </div>
                         <hr>
@@ -152,4 +155,85 @@
         width: 100%; 
         margin-left: 10px;
     }
+
+    .btn{
+        margin: 5px;
+    }
+
+    .telefone{
+        background-color: transparent !important;
+        border: none;
+        width: 100%;
+        margin-left: 10px;
+    }
+
 </style>
+
+<script>
+
+
+
+    $(document).ready(function () {
+        $('.telefone').mask('(00) 00000-0000'); 
+    });
+
+
+
+    $("#editBtn").on("click", function (e) {
+        $('.links').prop('disabled', false); 
+        $('.telefone').prop('disabled', false); 
+        $('#editBtn').hide();
+        $("#saveBtn").removeClass("d-none");
+        $("#cancelBtn").removeClass("d-none");
+    });
+
+    $("#cancelBtn").on("click", function () {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Unsaved changes will be lost",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm"
+        }).then((result) => {
+            if (result.isConfirmed) {
+            location.reload();
+        }
+        });
+    });
+
+
+    $("#saveBtn").on("click", function () {
+        debugger
+
+        var usuarioAtualizado = {
+            CdUsuario: @Model.CdUsuario, 
+            NmUsuario: '@Model.NmUsuario',
+            Email: '@Model.Email',
+            Telefone1: $('.telefone').eq(0).val(),
+            Telefone2: $('.telefone').eq(1).val(),
+            Site: $('.links').eq(0).val(),
+            Github: $('.links').eq(1).val(),
+            Twitter: $('.links').eq(2).val(),
+            Instagram: $('.links').eq(3).val(),
+            Facebook: $('.links').eq(4).val()
+        };
+
+        $.ajax({
+            url: '/Configuracao/AlteraDadosUsuario',
+            type: 'POST',
+            data: JSON.stringify(usuarioAtualizado),
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                Swal.fire("Sucesso!", "As informações foram salvas com sucesso.", "success");
+                location.reload(); 
+            },
+            error: function (error) {
+                Swal.fire("Erro!", "Ocorreu um problema ao salvar as informações.", "error");
+            }
+        });
+    });
+
+</script>

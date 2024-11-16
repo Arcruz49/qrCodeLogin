@@ -33,5 +33,9 @@ public partial class CadUsuario
 
     public string? Facebook { get; set; }
 
+    public string? Telefone1 { get; set; }
+
+    public string? Telefone2 { get; set; }
+
     public virtual CadPerfil? CdPerfilUsuarioNavigation { get; set; }
 }

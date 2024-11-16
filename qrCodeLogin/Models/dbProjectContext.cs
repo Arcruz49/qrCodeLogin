@@ -102,6 +102,14 @@ public partial class DbProjectContext : DbContext
                 .HasMaxLength(200)
                 .IsUnicode(false)
                 .HasColumnName("site");
+            entity.Property(e => e.Telefone1)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("telefone1");
+            entity.Property(e => e.Telefone2)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("telefone2");
             entity.Property(e => e.Twitter)
                 .HasMaxLength(200)
                 .IsUnicode(false)

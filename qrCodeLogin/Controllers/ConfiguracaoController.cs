@@ -47,5 +47,19 @@ namespace qrCodeLogin.Controllers
             return user != null ? user.CdUsuario : -1; 
         }
 
+
+        [HttpPost]
+        public JsonResult AlteraDadosUsuario([FromBody] CadUsuario usuario)
+        {
+            try
+            {
+                return Json(new { success = true, message = "Dados atualizados com sucesso." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
     }
 }
