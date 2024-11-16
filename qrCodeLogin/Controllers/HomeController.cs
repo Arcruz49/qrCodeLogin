@@ -28,5 +28,26 @@ namespace qrCodeLogin.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public JsonResult LogOff()
+        {
+            try
+            {
+                string cookieName = "LoginCookie";
+
+                if (HttpContext.Request.Cookies.ContainsKey(cookieName))
+                {
+                    HttpContext.Response.Cookies.Delete(cookieName);
+                }
+
+                return Json(new Retorno<string> { Success = true, Message = "Logged out successfully" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new Retorno<string> { Success = false, Message = "Error: " + ex.Message });
+            }
+        }
+
     }
 }

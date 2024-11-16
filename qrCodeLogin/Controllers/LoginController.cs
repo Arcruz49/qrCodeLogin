@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using qrCodeLogin.Models;
 using System.Net.Mail;
 using System.Net;
-using qrCodeLogin.Util;
+
+
 
 namespace qrCodeLogin.Controllers
 {
@@ -19,10 +20,8 @@ namespace qrCodeLogin.Controllers
         [HttpPost]
         public JsonResult LogOn(string username = "", string password = "")
         {
-
             try
             {
-                LogOnCode();
                 #region validações do form
 
 
@@ -36,18 +35,17 @@ namespace qrCodeLogin.Controllers
 
                 var user = db.CadUsuarios.FirstOrDefault(a => a.NmUsuario == username);
 
-                CadUsuario cadUsuario = new CadUsuario();
-                
-
                 if (user == null)
                     return Json(new Retorno<string> { Success = false, Message = "User Not Found" });
-
 
                 PasswordHasher<CadUsuario> hasher = new PasswordHasher<CadUsuario>();
                 var verificationResult = hasher.VerifyHashedPassword(user, user.Senha ?? "", password);
 
-                if (verificationResult != PasswordVerificationResult.Success)
+                if (verificationResult != Microsoft.AspNetCore.Identity.PasswordVerificationResult.Success)
                     return Json(new Retorno<string> { Success = false, Message = "Login Failed" });
+
+                var ret = CookiesLogin(user);
+                if (!ret.Success) throw new Exception();
 
                 return Json(new Retorno<string> { Success = true, Message = "" });
 
@@ -55,7 +53,6 @@ namespace qrCodeLogin.Controllers
             catch (Exception ex)
             {
                 return Json(new Retorno<string> { Success = false, Message = "Error " + ex.Message });
-
             }
 
         }
@@ -76,7 +73,6 @@ namespace qrCodeLogin.Controllers
 
                 #endregion
 
-
                 if (db.CadUsuarios.Any(a => a.NmUsuario == username))
                     return Json(new Retorno<string> { Success = false, Message = "User Name Already Taken" });
 
@@ -92,12 +88,10 @@ namespace qrCodeLogin.Controllers
 
                 usuario.Senha = hasher.HashPassword(usuario, password1);
 
-
                 db.Add(usuario);
                 db.SaveChanges();
 
-
-                var qrCodeImage = QrCodeUtil.GenerateImage(QrCodeUtil.GenerateEncryptedToken(usuario.CdUsuario, usuario.NmUsuario));
+                var qrCodeImage = Util.Util.GenerateImage(Util.Util.GenerateEncryptedToken(usuario.CdUsuario, usuario.NmUsuario));
 
                 string qrCodeBase64;
                 using (var ms = new System.IO.MemoryStream())
@@ -106,13 +100,16 @@ namespace qrCodeLogin.Controllers
                     qrCodeBase64 = Convert.ToBase64String(ms.ToArray());
                 }
 
-                var emailResult = QrCodeUtil.EnviaEmail("Bem-vindo ao sistema", "Seu código QR", qrCodeBase64, email);
+                var emailResult = Util.Util.EnviaEmail("Bem-vindo ao sistema", "Seu código QR", qrCodeBase64, email);
 
                 if (!emailResult.Success)
                 {
                     return Json(new Retorno<string> { Success = false, Message = "Error sending email: " + emailResult.Message });
                 }
 
+                var ret = CookiesLogin(usuario);
+
+                if (!ret.Success) throw new Exception();
 
                 return Json(new Retorno<string> { Success = true, Message = ""});
 
@@ -149,22 +146,96 @@ namespace qrCodeLogin.Controllers
             }
         }
 
-
-        public JsonResult LogOnCode(string token = "YmL5a9T44sEAKlL+1YE7Jw==:HFxTy/F/pIMZms5KAKuT9Q==")
+        [HttpPost]
+        public JsonResult LogOnCode(string token = "")
         {
             try
             {
 
                 if(string.IsNullOrEmpty(token)) return Json(new Retorno<string> { Success = false, Message = "Error " + "Token inválido." });
 
-                var tokenDescrip = QrCodeUtil.DecryptToken(token);
+                var tokenDescrip = Util.Util.DecryptToken(token);
 
+                var data = tokenDescrip.Split("/");
+
+                int cdUsuario = Convert.ToInt32(data[0]);
+                string nmUsuario = data[1];
+
+                var userName = (from a in db.CadUsuarios
+                                where a.CdUsuario == cdUsuario && a.NmUsuario == nmUsuario
+                                select a).FirstOrDefault();
+
+                if (userName == null) return Json(new Retorno<string> { Success = false, Message = "Usuário Inválido" });
+                
+                var ret = CookiesLogin(userName);
                 return Json(new Retorno<string> { Success = true, Message = "" });
+                
             }
             catch (Exception ex)
             {
                 return Json(new Retorno<string> { Success = false, Message = "Error " + ex.Message });
             }
         }
+
+
+        public Retorno<string> CookiesLogin(CadUsuario user)
+        {
+            try
+            {
+                var text = Util.Util.GenerateEncryptedToken(user.CdUsuario, user.NmUsuario);
+
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Expires = DateTime.Now.AddMinutes(60)  // duração do cookie
+                };
+
+                HttpContext.Response.Cookies.Append("LoginCookie", text);
+
+                return new Retorno<string> { Success = true, Message = "" };
+            }
+            catch(Exception ex)
+            {
+                return new Retorno<string> { Success = false, Message = ex.Message };
+            }
+        }
+
+        [HttpPost]
+        public JsonResult VerificaUsuarioLogado()
+        {
+            try
+            {
+                string cookieName = "LoginCookie";
+
+                if (HttpContext.Request.Cookies.TryGetValue(cookieName, out string cookieValue))
+                {
+
+                    if (!string.IsNullOrEmpty(cookieValue))
+                    {
+                        var decriptedToken = Util.Util.DecryptToken(cookieValue);
+
+                        var data = decriptedToken.Split("/");
+
+                        int cdUsuario = Convert.ToInt32(data[0]);
+                        string nmUsuario = data[1];
+
+                        var userName = (from a in db.CadUsuarios
+                                    where a.CdUsuario == cdUsuario
+                                    select a.NmUsuario).FirstOrDefault();
+
+                        if(userName == nmUsuario) return Json(new { Success = true, Message = "User is logged in" });
+                    }
+                }
+
+                return Json(new { Success = false, Message = "User is not logged in" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Message = "Error: " + ex.Message });
+            }
+        }
+
+        
+
     }
 }

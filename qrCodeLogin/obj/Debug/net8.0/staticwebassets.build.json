@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "F1li6YZ8SVu0m5bh+0PusO3yjK0u5zLRS/iiAip7UHI=",
+  "Hash": "kIxFlFnlGUiGjnMxu/gnKMBZDT8yGCvlLjpW/3SbJSM=",
   "Source": "qrCodeLogin",
   "BasePath": "_content/qrCodeLogin",
   "Mode": "Default",
@@ -131,6 +131,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\wwwroot\\images\\user icon.jpg",
+      "SourceId": "qrCodeLogin",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\wwwroot\\",
+      "BasePath": "_content/qrCodeLogin",
+      "RelativePath": "images/user icon.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\user icon.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\wwwroot\\js\\html5-qrcode.min.js",
       "SourceId": "qrCodeLogin",
       "SourceType": "Discovered",
@@ -148,25 +167,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\html5-qrcode.min.js"
-    },
-    {
-      "Identity": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\wwwroot\\js\\instascan.min.js",
-      "SourceId": "qrCodeLogin",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\wwwroot\\",
-      "BasePath": "_content/qrCodeLogin",
-      "RelativePath": "js/instascan.min.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\instascan.min.js"
     },
     {
       "Identity": "C:\\Users\\Arthur Cruz\\Documents\\projetos pessoais\\qrCodeLogin\\qrCodeLogin\\wwwroot\\js\\site.js",

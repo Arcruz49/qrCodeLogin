@@ -23,5 +23,15 @@ public partial class CadUsuario
 
     public DateTime? DtAlteracao { get; set; }
 
+    public string? Site { get; set; }
+
+    public string? Github { get; set; }
+
+    public string? Twitter { get; set; }
+
+    public string? Instagram { get; set; }
+
+    public string? Facebook { get; set; }
+
     public virtual CadPerfil? CdPerfilUsuarioNavigation { get; set; }
 }

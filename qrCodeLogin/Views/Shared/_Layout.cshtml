@@ -31,24 +31,24 @@
                         <li>
                             <a href="#" class="nav-link link-dark py-3 px-2 d-flex align-items-center" title="Notificações" data-bs-toggle="tooltip" data-bs-placement="right">
                                 <i class="bi-heart fs-4"></i>
-                                <span class="title ms-2">Notificações</span>
+                                <span class="title ms-2">Notifications</span>
                             </a>
                         </li>
                         <li>
                             <a href="/Usuarios" class="nav-link link-dark py-3 px-2 d-flex align-items-center" title="Usuários" data-bs-toggle="tooltip" data-bs-placement="right">
                                 <i class="bi-people fs-4"></i>
-                                <span class="title ms-2">Usuários</span>
+                                <span class="title ms-2">Users</span>
                             </a>
                         </li>
                         <li>
                             <div class="dropdown">
                                 <a href="#" class="nav-link link-dark py-3 px-2 d-flex align-items-center" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false" title="Perfil">
                                     <i class="bi-person fs-4"></i>
-                                    <span class="title ms-2">Perfil</span>
+                                    <span class="title ms-2">Profile</span>
                                 </a>
                                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                                    <li><a class="dropdown-item" href="#">Configurações</a></li>
-                                    <li><a class="dropdown-item" href="#">Sair</a></li>
+                                    <li><a class="dropdown-item" href="/Configuracao">Configurações</a></li>
+                                    <li><a class="dropdown-item" onclick="logOff()" href="/">Sair</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -56,7 +56,6 @@
                 </div>
             </div>
 
-            <!-- Conteúdo principal ajustado -->
             <div class="col p-3" style="margin-left: 200px;">
                 <div class="container" style="margin-top: 50px">
                     <main role="main" class="pb-3">
@@ -110,3 +109,44 @@
         height: 100vh;
     }
 </style>
+
+<script>
+
+    $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Login/VerificaUsuarioLogado",  
+                success: function (response) {
+                    if (response.success == false) {
+                        window.location.href = "/";
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("cookies error:", error);
+                }
+            });
+    });
+
+
+
+    
+    
+    function logOff() {
+        $.ajax({
+            type: "POST",
+            url: "/Home/LogOff",  
+            success: function (response) {
+                if (response.success == true) {
+                    window.location.href = "/";  // Redireciona para a página inicial
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error during log off:", error);
+                alert("An error occurred while logging off.");
+            }
+        });
+    }
+
+
+
+</script>

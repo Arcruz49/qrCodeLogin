@@ -9,7 +9,7 @@ using System.Text;
 
 namespace qrCodeLogin.Util
 {
-    public class QrCodeUtil
+    public class Util
     {
         private static DbProjectContext db = new DbProjectContext();
 
@@ -113,6 +113,8 @@ namespace qrCodeLogin.Util
                 }
             }
         }
+
+       
 
     }
 }

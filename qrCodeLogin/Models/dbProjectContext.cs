@@ -79,6 +79,18 @@ public partial class DbProjectContext : DbContext
                 .HasMaxLength(500)
                 .IsUnicode(false)
                 .HasColumnName("email");
+            entity.Property(e => e.Facebook)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("facebook");
+            entity.Property(e => e.Github)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("github");
+            entity.Property(e => e.Instagram)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("instagram");
             entity.Property(e => e.NmUsuario)
                 .HasMaxLength(256)
                 .IsUnicode(false)
@@ -86,6 +98,14 @@ public partial class DbProjectContext : DbContext
             entity.Property(e => e.Senha)
                 .IsUnicode(false)
                 .HasColumnName("senha");
+            entity.Property(e => e.Site)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("site");
+            entity.Property(e => e.Twitter)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("twitter");
             entity.Property(e => e.UsuarioA).HasColumnName("usuarioA");
             entity.Property(e => e.UsuarioC).HasColumnName("usuarioC");
 

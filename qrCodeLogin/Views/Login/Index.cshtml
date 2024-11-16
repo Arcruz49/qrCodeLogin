@@ -13,14 +13,14 @@
                 <form id="loginForm" class="login" action="" method="post">
                     <input type="text" id="username" name="" placeholder="User Name" required autofocus="true">
                     <input type="password" id="password" name="" placeholder="User Password" required autofocus="true">
-                    <button class="btn" type="submit">Login</button>
+                    <button class="btn" id="btnLogin" type="submit">Login</button>
                 </form>
                 <form id="registerForm" class="register" action="" method="post">
                     <input type="text" id="usernameRegister" name="" placeholder="User Name" required autofocus="true">
                     <input type="email" id="email" name="" placeholder="E-mail" required autofocus="true">
                     <input type="password" id="password1" name="" placeholder="Password" required autofocus="true">
                     <input type="password" id="password2" name="" placeholder="Confirm Your Password" required autofocus="true">
-                    <button class="btn" type="submit">Register</button>
+                    <button class="btn" id="btnRegister" type="submit">Register</button>
                 </form>
                 <p class="account login">Don't Have An Account? <a href="#" id="registerLink">Register</a></p>
                 <p class="account register">Already Have An Account? <a href="#" id="loginLink">Login</a></p>
@@ -49,7 +49,6 @@
 
 <script>
     $(document).ready(function () {
-        // Trocar entre login e registro
         $('#registerLink').on('click', function (e) {
             e.preventDefault();
             $('.login').hide();
@@ -66,19 +65,28 @@
             $('.message').html('');
         });
 
-        // funcao do qrcode
         $('#qrCodeLogin').on('click', function () {
             $('#qrCodeScanner').show();
 
-            // inicia o scanner
             const html5QrCode = new Html5Qrcode("reader");
 
             function onScanSuccess(decodedText, decodedResult) {
-                document.getElementById('message').textContent = "QR Code Escaneado: " + decodedText;
+                $.ajax({
+                    url: '/Login/LogOnCode', 
+                    type: 'POST',
+                    data: { token: decodedText }, 
+                    success: function (response) {
+                        if (response.success == true) {
+                            window.location.href = "/Home";
+                        } else {
+                            $('.message').html = response.message;
+                        }
+                    },
+                });
             }
 
             function onScanError(errorMessage) {
-                console.error("Erro ao escanear: ", errorMessage);
+                //console.error("Erro ao escanear: ", errorMessage);
             }
 
             html5QrCode.start(
@@ -95,5 +103,69 @@
             });
         });
     });
+
+
+    $("#btnLogin").on("click", function (e) {
+        e.preventDefault();  
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/Login/LogOn",  
+            data: {
+                username: username,
+                password: password
+            },
+            success: function (response) {
+                if (response.success == true) {
+                    window.location.href = "/Home";
+                }
+                else {
+                    $('.message').html = response.message;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Login error:", error);
+                alert("An error occurred during login.");
+            }
+        });
+    });
+
+    $("#btnRegister").on("click", function (e) {
+        e.preventDefault();
+
+        var username = $("#usernameRegister").val();
+        var email = $("#email").val();
+        var password1 = $("#password1").val();
+        var password2 = $("#password2").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/Login/Register",
+            data: {
+                username: username,
+                email: email,
+                password1: password1,
+                password2: password2,
+            },
+            success: function (response) {
+                if (response.success == true) {
+                    window.location.href = "/Home";
+                }
+                else {
+                    $('.message').html = response.message;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Login error:", error);
+                alert("An error occurred during login.");
+            }
+        });
+    });
+
+
+
 </script>
 
