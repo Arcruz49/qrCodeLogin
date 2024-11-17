@@ -95,6 +95,10 @@ public partial class DbProjectContext : DbContext
                 .HasMaxLength(256)
                 .IsUnicode(false)
                 .HasColumnName("nmUsuario");
+            entity.Property(e => e.Ocupacao)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("ocupacao");
             entity.Property(e => e.Senha)
                 .IsUnicode(false)
                 .HasColumnName("senha");

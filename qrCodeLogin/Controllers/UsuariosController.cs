@@ -32,7 +32,6 @@ namespace qrCodeLogin.Controllers
                              dtCriacao = a.DtCriacao.HasValue ? a.DtCriacao.Value.ToString("dd/MM/yyyy") : string.Empty 
                          }).ToList();
 
-            // Retorna a lista no formato esperado pelo DataTables.js
             return Json(new { data = lista });
         }
 

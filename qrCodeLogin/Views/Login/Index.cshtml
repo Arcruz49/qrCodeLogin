@@ -24,7 +24,7 @@
                 </form>
                 <p class="account login">Don't Have An Account? <a href="#" id="registerLink">Register</a></p>
                 <p class="account register">Already Have An Account? <a href="#" id="loginLink">Login</a></p>
-                <p class="message"></p>
+                <p style="color: red" class="message"></p>
             </div>
 
             <div class="form-img login">
@@ -79,7 +79,7 @@
                         if (response.success == true) {
                             window.location.href = "/Home";
                         } else {
-                            $('.message').html = response.message;
+                            $('.message').html(response.Message)
                         }
                     },
                 });
@@ -107,7 +107,6 @@
 
     $("#btnLogin").on("click", function (e) {
         e.preventDefault();  
-
         var username = $("#username").val();
         var password = $("#password").val();
 
@@ -123,7 +122,7 @@
                     window.location.href = "/Home";
                 }
                 else {
-                    $('.message').html = response.message;
+                    $('.message').html(response.message)
                 }
             },
             error: function (xhr, status, error) {

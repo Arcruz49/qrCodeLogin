@@ -37,5 +37,9 @@ public partial class CadUsuario
 
     public string? Telefone2 { get; set; }
 
+    public byte[]? ProfileImage { get; set; }
+
+    public string? Ocupacao { get; set; }
+
     public virtual CadPerfil? CdPerfilUsuarioNavigation { get; set; }
 }

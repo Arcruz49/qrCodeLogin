@@ -221,9 +221,15 @@ namespace qrCodeLogin.Controllers
 
                         var userName = (from a in db.CadUsuarios
                                     where a.CdUsuario == cdUsuario
-                                    select a.NmUsuario).FirstOrDefault();
+                                    select new
+                                    {
+                                        a.NmUsuario,
+                                        a.CdPerfilUsuario
+                                    }).FirstOrDefault();
 
-                        if(userName == nmUsuario) return Json(new { Success = true, Message = "User is logged in" });
+                        var perfilAdm = userName.CdPerfilUsuario == 1 ? 1 : 0;
+
+                        if(userName.NmUsuario == nmUsuario) return Json(new { Success = true, Message = "User is logged in", Permission = perfilAdm });
                     }
                 }
 

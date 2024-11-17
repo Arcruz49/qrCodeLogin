@@ -8,16 +8,19 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img src="/images/user icon.jpg" alt="avatar"
-                             class="rounded-circle img-fluid" style="width: 150px;">
+                        <img id="profileImage" src="@(Model.ProfileImage != null ? $"data:image/png;base64,{Convert.ToBase64String(Model.ProfileImage)}" : "/images/user icon.jpg")"
+                             alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+
+
                         <h5 class="my-3">@Model.NmUsuario</h5>
                         <p class="text-muted mb-1">@ViewBag.nmPerfil</p>
-                        <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                        <p class="text-muted mb-4">@Model.Ocupacao</p>
                         <div class="d-flex justify-content-center mb-2">
                             <button type="button" id="editBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Edit</button>
                             <button type="button" id="saveBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-success d-none">Save</button>
                             <button type="button" id="cancelBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger d-none">Cancel</button>
                         </div>
+                        <input type="file" id="imageUpload" class="form-control d-none" accept="image/*">
 
                     </div>
                 </div>
@@ -89,10 +92,10 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Address</p>
+                                <p class="mb-0">Occupation</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                <input name="Ocupacao" type="text" class="links" value="@(Model.Ocupacao ?? "")" disabled>
                             </div>
                         </div>
                     </div>
@@ -170,25 +173,20 @@
 </style>
 
 <script>
-
-
-
     $(document).ready(function () {
-        $('.telefone').mask('(00) 00000-0000'); 
+        $('.telefone').mask('(00) 00000-0000');
     });
 
-
-
-    $("#editBtn").on("click", function (e) {
-        $('.links').prop('disabled', false); 
-        $('.telefone').prop('disabled', false); 
+    $("#editBtn").on("click", function () {
+        $('.links').prop('disabled', false);
+        $('.telefone').prop('disabled', false);
+        $('#imageUpload').removeClass('d-none');
         $('#editBtn').hide();
         $("#saveBtn").removeClass("d-none");
         $("#cancelBtn").removeClass("d-none");
     });
 
     $("#cancelBtn").on("click", function () {
-
         Swal.fire({
             title: "Are you sure?",
             text: "Unsaved changes will be lost",
@@ -199,41 +197,64 @@
             confirmButtonText: "Confirm"
         }).then((result) => {
             if (result.isConfirmed) {
-            location.reload();
-        }
-        });
-    });
-
-
-    $("#saveBtn").on("click", function () {
-        debugger
-
-        var usuarioAtualizado = {
-            CdUsuario: @Model.CdUsuario, 
-            NmUsuario: '@Model.NmUsuario',
-            Email: '@Model.Email',
-            Telefone1: $('.telefone').eq(0).val(),
-            Telefone2: $('.telefone').eq(1).val(),
-            Site: $('.links').eq(0).val(),
-            Github: $('.links').eq(1).val(),
-            Twitter: $('.links').eq(2).val(),
-            Instagram: $('.links').eq(3).val(),
-            Facebook: $('.links').eq(4).val()
-        };
-
-        $.ajax({
-            url: '/Configuracao/AlteraDadosUsuario',
-            type: 'POST',
-            data: JSON.stringify(usuarioAtualizado),
-            contentType: 'application/json; charset=utf-8',
-            success: function (response) {
-                Swal.fire("Sucesso!", "As informações foram salvas com sucesso.", "success");
-                location.reload(); 
-            },
-            error: function (error) {
-                Swal.fire("Erro!", "Ocorreu um problema ao salvar as informações.", "error");
+                location.reload();
             }
         });
     });
 
+    $("#imageUpload").on("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $("#profileImage").attr("src", e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+
+    $("#saveBtn").on("click", function () {
+        const formData = new FormData();
+        formData.append("CdUsuario", @Model.CdUsuario);
+        formData.append("NmUsuario", '@Model.NmUsuario');
+        formData.append("Email", '@Model.Email');
+        formData.append("Telefone1", $('.telefone').eq(0).val());
+        formData.append("Telefone2", $('.telefone').eq(1).val());
+        formData.append("Site", $('.links').eq(0).val());
+        formData.append("Github", $('.links').eq(1).val());
+        formData.append("Twitter", $('.links').eq(2).val());
+        formData.append("Instagram", $('.links').eq(3).val());
+        formData.append("Facebook", $('.links').eq(4).val());
+        formData.append("Ocupacao", $('.links').eq(5).val());
+
+        const imageFile = $("#imageUpload")[0].files[0];
+        if (imageFile) {
+            formData.append("ProfileImage", imageFile);
+        }
+
+        $.ajax({
+            url: '/Configuracao/AlteraDadosUsuario',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    Swal.fire({
+                        title: "Error",
+                        text: response.message,
+                        icon: "warning",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "ok"
+                    });
+                }
+            },
+            error: function () {
+                Swal.fire("Erro!", "Ocorreu um problema ao salvar as informações.", "error");
+            }
+        });
+    });
 </script>
