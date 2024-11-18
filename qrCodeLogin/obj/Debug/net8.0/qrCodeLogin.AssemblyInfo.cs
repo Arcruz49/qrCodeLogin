@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("qrCodeLogin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66e11273b0984e39dfcb0ebb90ebcfb37834f521")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0310abf7dda0127e57cbf589b63a41b7de22ed3")]
 [assembly: System.Reflection.AssemblyProductAttribute("qrCodeLogin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("qrCodeLogin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

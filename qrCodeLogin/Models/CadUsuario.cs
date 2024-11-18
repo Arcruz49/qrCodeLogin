@@ -41,5 +41,9 @@ public partial class CadUsuario
 
     public string? Ocupacao { get; set; }
 
+    public string? Biografia { get; set; }
+
+    public string? Interesses { get; set; }
+
     public virtual CadPerfil? CdPerfilUsuarioNavigation { get; set; }
 }

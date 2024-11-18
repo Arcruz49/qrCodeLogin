@@ -68,6 +68,10 @@ public partial class DbProjectContext : DbContext
             entity.ToTable("cadUsuario");
 
             entity.Property(e => e.CdUsuario).HasColumnName("cdUsuario");
+            entity.Property(e => e.Biografia)
+                .HasMaxLength(256)
+                .IsUnicode(false)
+                .HasColumnName("biografia");
             entity.Property(e => e.CdPerfilUsuario).HasColumnName("cdPerfilUsuario");
             entity.Property(e => e.DtAlteracao)
                 .HasColumnType("datetime")
@@ -91,6 +95,9 @@ public partial class DbProjectContext : DbContext
                 .HasMaxLength(200)
                 .IsUnicode(false)
                 .HasColumnName("instagram");
+            entity.Property(e => e.Interesses)
+                .IsUnicode(false)
+                .HasColumnName("interesses");
             entity.Property(e => e.NmUsuario)
                 .HasMaxLength(256)
                 .IsUnicode(false)

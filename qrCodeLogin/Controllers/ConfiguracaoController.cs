@@ -67,6 +67,7 @@ namespace qrCodeLogin.Controllers
                 usuarioAlt.Telefone1 = usuario.Telefone1;
                 usuarioAlt.Telefone2 = usuario.Telefone2;
                 usuarioAlt.Ocupacao = usuario.Ocupacao;
+                usuarioAlt.Biografia = usuario.Biografia;
                 usuarioAlt.DtAlteracao = DateTime.Now;
 
                 if (ProfileImage != null)
