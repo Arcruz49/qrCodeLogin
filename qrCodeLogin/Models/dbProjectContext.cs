@@ -19,6 +19,8 @@ public partial class DbProjectContext : DbContext
 
     public virtual DbSet<CadPerfil> CadPerfil { get; set; }
 
+    public virtual DbSet<CadPublicacao> CadPublicacao { get; set; }
+
     public virtual DbSet<CadUsuario> CadUsuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -59,6 +61,37 @@ public partial class DbProjectContext : DbContext
                 .HasColumnName("nmPerfil");
             entity.Property(e => e.UsuarioA).HasColumnName("usuarioA");
             entity.Property(e => e.UsuarioC).HasColumnName("usuarioC");
+        });
+
+        modelBuilder.Entity<CadPublicacao>(entity =>
+        {
+            entity.HasKey(e => e.CdPublicacao).HasName("PK__cadPubli__603C0F5EB06E049D");
+
+            entity.ToTable("cadPublicacao");
+
+            entity.Property(e => e.CdPublicacao).HasColumnName("cdPublicacao");
+            entity.Property(e => e.CdUsuario).HasColumnName("cdUsuario");
+            entity.Property(e => e.CdUsuarioAlt).HasColumnName("cdUsuarioAlt");
+            entity.Property(e => e.DsPublicacao)
+                .IsUnicode(false)
+                .HasColumnName("dsPublicacao");
+            entity.Property(e => e.DtCriacao)
+                .HasColumnType("datetime")
+                .HasColumnName("dtCriacao");
+            entity.Property(e => e.DtDeletado)
+                .HasColumnType("datetime")
+                .HasColumnName("dtDeletado");
+            entity.Property(e => e.Imagem)
+                .HasMaxLength(1)
+                .HasColumnName("imagem");
+
+            entity.HasOne(d => d.CdUsuarioNavigation).WithMany(p => p.CadPublicacaoCdUsuarioNavigations)
+                .HasForeignKey(d => d.CdUsuario)
+                .HasConstraintName("FK__cadPublic__cdUsu__5CD6CB2B");
+
+            entity.HasOne(d => d.CdUsuarioAltNavigation).WithMany(p => p.CadPublicacaoCdUsuarioAltNavigations)
+                .HasForeignKey(d => d.CdUsuarioAlt)
+                .HasConstraintName("FK__cadPublic__cdUsu__5DCAEF64");
         });
 
         modelBuilder.Entity<CadUsuario>(entity =>

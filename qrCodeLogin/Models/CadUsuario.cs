@@ -45,5 +45,9 @@ public partial class CadUsuario
 
     public string? Interesses { get; set; }
 
+    public virtual ICollection<CadPublicacao> CadPublicacaoCdUsuarioAltNavigations { get; set; } = new List<CadPublicacao>();
+
+    public virtual ICollection<CadPublicacao> CadPublicacaoCdUsuarioNavigations { get; set; } = new List<CadPublicacao>();
+
     public virtual CadPerfil? CdPerfilUsuarioNavigation { get; set; }
 }
